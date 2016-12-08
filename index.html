@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>H-1B Data project</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://cdn.knightlab.com/libs/soundcite/latest/css/player.css' rel='stylesheet' type='text/css'><script type='text/javascript' src='https://cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style>
+		
+		.soundcite{
+			position: absolute;
+/*			background: rgba(100,100,100, 0.5);*/
+			background: rgba(100, 100, 100, 0.7);
+			font-size: 16px;
+			font-family: "Lato", sans-serif;
+			color:#ffffff;
+			padding: 10px;
+			top:50px;
+			left:35px;
+		}
+		
+	/*CSS for chart */
+		.bar{
+			opacity: 0.7;
+		}
+		
+/*
+		button{
+			font-family: "Lato", sans-serif;
+		}
+*/
+	
+		#years{
+			padding-top: 20px;
+			padding-bottom: 5px;	
+		}
+		
+		.btn-sm{
+			font-size: 14px;
+			font-family: "Lato", sans-serif;
+			font-weight: 300;
+			color:#ffffff;
+			background: #aeaeae;
+			border:1px solid #aeaeae;
+			margin-left: 10px;
+			margin-right: 15px;
+		}
+		
+		.btn-sm:hover{
+			background: #363636;
+			color:#ffffff;
+		}
+		
+		#btn2010.active, #btn2011.active, #btn2012.active, #btn2013.active, #btn2014.active, #btn2015.active{
+/*			border: 1px solid #aeaeae;*/
+			box-shadow: 2px 0px 2px #aeaeae;
+			background: #363636;
+			color:#ffffff;
+		}
+		
+
+		.xscale{
+			font-family: "Lato", sans-serif;
+			font-size: 9px;
+			font-weight: 300;
+			margin-bottom: 50px;
+		}
+		
+		.xscale path, .xscale line{
+			stroke: #aeaeae;
+			stroke-width: 0.09em;
+		}
+			
+		.yscale{
+			font-family: "Lato", sans-serif;
+			font-weight: 300;
+		}
+		
+		.yscale path, .yscale line{
+			display:none;
+		}
+		
+		.legend{
+			padding-top: 10px;
+			width:800px;
+			height: auto;
+		}
+		
+		@media (max-width:990px){
+			#years{
+				padding-top:15px;
+			}
+			
+			.btn-sm{
+				font-size: 12px;
+				margin-right: 8px;
+			}
+			
+			.soundcite{
+				font-size: 14px;
+				top:35px;
+				left:25px;
+			}
+		}
+		
+		@media (max-width:505px){
+			
+			#years{
+				padding-top: 10px;
+			}
+			
+			.btn-sm{
+				margin-right: 2px;
+				padding:5px;
+			}
+			
+			.soundcite{
+				font-size: 14px;
+				top:35px;
+				left:30px;
+			}
+		}
+		
+	
+	</style>  
+	  
+	  
+  </head>
+	
+  <body>
+	<header>
+		<h1>Entering the Lottery</h1>
+		<h2>Immigrants vie for a limited number of work visas </h2>
+<!--		<p class="byline">By Paayal Zaveri</p>-->
+    </header>
+	 
+	<div class="container">
+		<div class="col-sm-8 col-sm-offset-2">
+				
+				<p class="lead"> A controversial subject during this past election cycle was immigration and the ways in which immigrants contribute to the American economy.</p> 
+				
+				<p> Although much of the national discussion centered around undocumented immigrants, <a href="https://www.washingtonpost.com/news/fact-checker/wp/2016/03/21/donald-trump-flip-flops-then-flips-and-flops-more-on-h-1b-visas/?utm_term=.1870a63dd2b9#comments">debate over immigrants working "high-skilled" jobs also came to the forefront</a>.</p>
+			
+				<p>"High-skilled" To work in the United States, immigrants working "high-skilled" jobs, or jobs that require higher education and have a relatively high salary, need an employer-sponsored visa called an H-1B. </p>
+
+				<p>Proponents, such as tech companies and pro-immigration groups, say high skilled immigration is needed because there is a shortage of skilled workers in the U.S. for these jobs. However, some companies that hire workers with this visa have been criticized for using it to drive down wages and replace American workers.</p>
+			
+				<p> This project explores the <span class="color-sm">numbers, companies and people</span> behind the H-1B visa program. It looks at how the program being used, who is benefitting and who may be losing out.</p>
+					
+				<p> One thing is clear though — obtaining an H-1B visa now is not easy.</p>
+				
+		</div>
+	</div>
+	  
+	<div class="container">
+		<div class="text-center stats">
+			
+			<p class="normal">In 2016, over <span class="color">236,000 applications </span> were submitted*<br><span class="source">*according to the U.S. Citizenship and Immigration Services Department.</span></p>
+			<p class="normal">The government gives <span class="color">85,000 new visas</span> per year,</p>
+			<p class=normal>with 20,000 reserved for those with graduate degrees from U.S. universities.</p>
+			<p class="normal">All applications enter a lottery,</p>
+			<p class="color">1 in 3 make it.</p>
+
+	 	</div>
+		
+		<div class="col-sm-8 col-sm-offset-2">
+			
+			<p>For the last four years, there have been about three times as many applicants as available visas and the total number of visas granted each year has roughly doubled since the H-1B program began in 1997.</p>
+			
+			<p>In 2015, about two-thirds of H-1B visa holders came from India. (Detailed data for 2016 has not yet been released).</p>
+
+		</div>
+		
+	</div>
+	  
+	<div class="container graphic">
+		
+		<div class='tableauPlaceholder' id='viz1480632546879' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;H-&#47;H-1Bvisanumbersbarchart&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='H-1Bvisanumbersbarchart&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;H-&#47;H-1Bvisanumbersbarchart&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1480632546879');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+	  
+		
+	</div>
+	  
+	<div class="container">
+		<div class="col-sm-8 col-sm-offset-2">
+			
+			<h3>Which companies want to hire H-1B visa workers?</h3>
+			
+			<p> In order to apply for an H-1B, employers must first submit a Labor Condition Application (LCA) to the U.S. Department of Labor. An LCA details position and the wage being offered to the prospective worker compared against the wage typically paid to a worker in that position. Each LCA typically applies for one employee, but many larger companies request multiple workers per LCA application.</p>
+			
+			<p> In 2015, the federal government approved about <span class="color-sm">530,000 LCA’s</span> for about <span class="color-sm">1.14 million workers</span>, a significant increase from past years. </p>	
+			
+			<p>Below is data showing the 20 companies that requested the most workers each year from 2010 to 2015. Click on each year to see how these companies change over time.</p>
+
+		</div>
+	</div>
+	  
+	<div class= "text-center">
+		<div id="years"> 
+		<button class="btn btn-default btn-sm active"id="btn2010">2010</button>
+		<button class="btn btn-default btn-sm" id="btn2011">2011</button>
+		<button class="btn btn-default btn-sm"id="btn2012">2012</button>
+		<button class="btn btn-default btn-sm" id="btn2013">2013</button>
+		<button class="btn btn-default btn-sm" id="btn2014">2014</button>
+		<button class="btn btn-default btn-sm" id="btn2015">2015</button>
+		</div>
+	</div>
+	  
+	 
+	<div class="container">
+		
+		<img src="assets/graphics/legend%20for%20chart.svg" class="img-responsive center-block legend">
+		
+		<div class="employers">
+		</div>
+		
+	
+	</div>
+	  
+	<div class="container">
+		<div class="col-sm-8 col-sm-offset-2">
+			
+			<p>As is seen on the charts above, many of these companies are India-based consulting and outsourcing firms. These firms bring workers to the U.S. on behalf of other companies, mainly tech companies. Several of the these firms, like Tata, Infosys and Wipro, flood the application pool, filing so many applications that smaller companies have less opportunities to win the lottery.</p>
+			
+			<p>As applications from these India-based firms have steadily increased over the years, so have the number of high-skilled immigrants from India. </p>
+			
+			<p> But many U.S. based companies also request thousands of foreign workers each year. In 2015, Deloitte alone requested over 153,000 workers. </p>
+			
+			<p> So the question remains: is it truly hard to find American workers qualified to fill these jobs, or </p>
+			
+			<p>A law passed in December 2015 attempts to deter these companies from flooding the application pool. The law adds an additional fee for visa applications from larger companies where half of their employees have high skilled work visas. </p>
+			
+		
+			
+		</div>
+	</div>
+	  
+	<div class="container">
+		<div class="col-sm-8 col-sm-offset-2">
+			
+			<h3>Who applies for an H-1B visa?</h3>
+			
+			<p>While the majority of H-1B visa holders are employed by large tech firms, smaller companies may also seek employees who apply for the visa. </p>
+			
+			<p> With large companies dominating the H-1B visa lottery, start-ups often face difficulties hiring employees who require an H-1B. They don’t have the funds or experience navigating the process, according to a <a href="http://acalliance.org/wp-content/uploads/2016/03/ACA__Cost_of_Skilled_Workers__White_Paper_FINAL.pdf" target="_blank">study from Dartmouth’s Tuck School of Business</a>.</p>
+			
+			<figure class="portraits" >
+                <img src="assets/photos/IMG_2897%20copy3.jpg" class="center-block img-responsive" alt="Clement" >
+			 	<span class="soundcite" data-id="261253927" data-start="0" data-end="96243" data-plays="1">Clement's Story 1:36</span>
+			</figure>
+	
+			<p> <strong>Clement Garnier</strong> faced this when he searched for a job in the U.S. He made it through the H-1B lottery last year. But his route from France to the Silicon Valley had some bumps along the way. </p>
+			
+			<p>Over the last six months, he helped grow the start-up that hired him. The company now employs over 50 people.</p>
+			
+			<p> Also, many of these visa hopefuls are international students. They are typically given a year (those in STEM fields now have three years) to work in the U.S. after graduation — a period called optional practical training (OPT). After that training period ends they need to apply for an H-1B if they want to stay in the country.  </p>
+			
+			<figure class="portraits">
+				<img src="assets/photos/IMG_2953.JPG" class="center-block img-responsive" alt="Sofiya">
+			  	<span class="soundcite" data-id="262221580" data-start="0" data-end="93840" data-plays="1">Sofiya's Story 1:33</span>
+			</figure>
+
+			<p> <strong>Sofiya Taskova</strong> came to the U.S. from Bulgaria seven years ago for college. After graduation from Dartmouth College she found a job in San Francisco. In 2015, her OPT was set to expire, so she applied for an H-1B in 2015. When she lost the lottery, she scrambled to find a way to stay at her job in the U.S. </p>
+			
+			<p>However, for many, getting the visa is just the beginning. A student visa, followed by OPT and an then an H-1B is often a route to citizenship, but that process can take years. </p>
+			
+			<figure class="portraits">
+                <img src="assets/photos/IMG_3040.JPG" class=" center-block img-responsive" alt="Yash">
+			 	<span class="soundcite" data-id="262221816" data-start="0" data-end="90521" data-plays="1">Yash's Story 1:30</span>
+			</figure>
+
+			<p> <strong>Yash Doshi</strong> came to the U.S. from India for a master’s degree in computer engineering from USC in 2011. He got his H-1B the second time he applied.</p>
+			
+			<p>Now after putting down roots in Northern California, he’s trying to get his green card. But he’s hit some roadblocks, and it affects his wife’s career as well. </p>
+			
+			<p></p>
+		
+		</div>
+	</div>
+	  
+	
+	  
+	
+	  
+	<div class="container">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h3>What's Next?</h3>
+			
+			<p> Although Trump's exact intentions are unclear, his appointment of Alabama Sen. Jeff Sessions as Attorney General indicates regulations on the H-1B visa program may be tightened. Sessions is known for his <a href="http://fortune.com/2016/11/21/h1b-tech-industry-visa-donald-trump-jeff-sessions/">criticism of the H-1B visa program and immigration in general</a>.</p>
+		
+
+		</div>
+	  
+	</div>
+	  
+	<footer>
+	  <p>Project created by Paayal Zaveri at UC Berkeley Graduate School of Journalism <br>with help of instructors Peter Aldhous and Jeremy Rue.</p>
+	</footer>
+	  
+	  
+	  
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script src="js/bootstrap.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script>
+  	
+		
+        //employers chart code
+	
+		
+		var margin = {top:50, right:100, bottom:60, left:180},
+			width  = 700 - margin.left - margin.right,
+			height = 500 - margin.top - margin.bottom;
+
+		var svg = d3.select(".employers")
+			.append("svg")
+			.attr("width", "100%")
+			.attr("height", "100%")
+			.attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom));
+
+		var chart = svg.append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		
+		var xScale = d3.scaleLinear()
+			.range([0, width]);
+
+		var yScale = d3.scaleBand()
+			.range([height, 0])
+			.padding(0.1);
+		
+		var colorScale = d3.scaleOrdinal()
+			.range(["#3c9a42", "#3855c3", "#1ca2a4", "#e58a28", "#c14040"]);
+		
+		var chartLoop;
+		
+		d3.csv("employers_grouped.csv", function(error, data){
+    		if (error) throw error; //catch any errors
+			
+		
+			
+		//map function goes through every element, then returns a number for total
+		data = data.map(function(d){ 
+    		d["total"] = +d["total"]; 
+    		return d;
+		});
+		
+		console.log(data.filter(function(d){ return d.year == "2010"}));
+			
+			
+		//xScale.domain([0, d3.max(data, function(d){ return d["total"]; })]);
+			
+		xScale.domain([0, 160000]);
+		
+		//setting color variable
+		colorScale.domain(data.map(function(d){ return d["company_type"];}))
+
+		yScale.domain(data
+			.filter(function(d){ return d["year"] == "2010"; })
+			.sort(function(a, b){ return a["total"] - b["total"]; })
+			.map(function(d){ return d["employer_clean"]; })
+		);
+			
+		chartLoop = chart.selectAll(".bar")
+			.data(data)
+    		.enter();
+			
+			
+    	chartLoop.append("rect")
+    		.attr("class", "bar")
+    		.attr("y", function(d){ return yScale(d["employer_clean"]); })
+			.attr("x", function(d){ return 0; })
+    		.attr("width", function(d){ if(d["year"] == "2010") { return xScale(d["total"]) } else { return 0 }; })
+    		.attr("height", function(d){ return yScale.bandwidth(); })
+			.attr("fill", function(d){ return colorScale(d["company_type"]); });
+			
+		chartLoop.append("text")
+			.attr("class", "label")
+			.attr("x", function(d){ if(d["year"] == "2010") { return xScale(d["total"]) + 3 } else { return 0 }; })
+			.attr("y", function(d){ return yScale(d["employer_clean"]) + 12; })
+			.text(function(d){ if(d["year"] == "2010") return d3.format(",")(d["total"]); })
+			.style("font-size", "9px")
+			.style("font-family", "Lato")
+			.style("font-weight", 300)
+		
+
+//interactivity between charts		
+		d3.select("#btn2010")
+			.on("click", function(e, i){
+			
+				d3.selectAll("button")
+					.classed("active", false);
+			
+				d3.select("#btn2010")
+					.classed("active", true);
+			
+				yScale.domain(data
+					.filter(function(d){ return d["year"] == "2010"; })
+					.sort(function(a, b){ return a["total"] - b["total"]; })
+					.map(function(d){ return d["employer_clean"]; })
+				);
+			
+				chart.selectAll(".bar")
+					.transition()
+					.duration(800)
+					.attr("y", function(d){ return yScale(d["employer_clean"]); })
+					.attr("width", function(d){if(d["year"] == "2010") { return xScale(d["total"]) } else { return 0 }; });
+					
+				svg.selectAll(".yscale")
+					.transition()
+					.duration(800)
+					.call(d3.axisLeft(yScale));
+			
+				chartLoop.selectAll(".label")
+					.attr("x", function(d){ if(d["year"] == "2010") { return xScale(d["total"]) + 3 } else { return 0 }; })
+					.attr("y", function(d){ return yScale(d["employer_clean"]) + 12; })
+					.text(function(d){ if(d["year"] == "2010") return d3.format(",")(d["total"]); })
+					.style("font-size", "9px")
+					.style("font-family", "Lato")
+					.style("font-weight", 300)
+					
+			
+			});
+		
+		d3.select("#btn2011")
+			.on("click", function(e, i){
+			
+				d3.selectAll("button")
+					.classed("active", false);
+			
+				d3.select("#btn2011")
+					.classed("active", true);
+			
+				yScale.domain(data
+					.filter(function(d){ return d["year"] == "2011"; })
+					.sort(function(a, b){ return a["total"] - b["total"]; })
+					.map(function(d){ return d["employer_clean"]; })
+				);
+			
+				chart.selectAll(".bar")
+					.transition()
+					.duration(800)
+					.attr("y", function(d){ return yScale(d["employer_clean"]); })
+					.attr("width", function(d){if(d["year"] == "2011") { return xScale(d["total"]) } else { return 0 }; });
+					
+				svg.selectAll(".yscale")
+					.transition()
+					.duration(800)
+					.call(d3.axisLeft(yScale));
+			
+				chartLoop.selectAll(".label")
+					.attr("x", function(d){ if(d["year"] == "2011") { return xScale(d["total"]) + 3} else { return 0 }; })
+					.attr("y", function(d){ return yScale(d["employer_clean"]) + 12; })
+					.text(function(d){ if(d["year"] == "2011") return d3.format(",")(d["total"]); })
+					.style("font-size", "9")
+					.style("font-family", "Lato")
+					.style("font-weight", 300)
+			
+			});
+			
+		d3.select("#btn2012")
+			.on("click", function(e, i){
+			
+				d3.selectAll("button")
+					.classed("active", false);
+			
+				d3.select("#btn2012")
+					.classed("active", true);
+			
+				yScale.domain(data
+					.filter(function(d){ return d["year"] == "2012"; })
+					.sort(function(a, b){ return a["total"] - b["total"]; })
+					.map(function(d){ return d["employer_clean"]; })
+				);
+			
+				chart.selectAll(".bar")
+					.transition()
+					.duration(800)
+					.attr("y", function(d){ return yScale(d["employer_clean"]); })
+					.attr("width", function(d){if(d["year"] == "2012") { return xScale(d["total"]) } else { return 0 }; });
+					
+				svg.selectAll(".yscale")
+					.transition()
+					.duration(800)
+					.call(d3.axisLeft(yScale));
+			
+				chartLoop.selectAll(".label")
+					.attr("x", function(d){ if(d["year"] == "2012") { return xScale(d["total"]) + 3 } else { return 0 }; })
+					.attr("y", function(d){ return yScale(d["employer_clean"]) + 12; })
+					.text(function(d){ if(d["year"] == "2012") return d3.format(",")(d["total"]); })
+					.style("font-size", "9")
+					.style("font-family", "Lato")
+					.style("font-weight", 300)
+			
+			});
+			
+		d3.select("#btn2013")
+			.on("click", function(e, i){
+			
+				d3.selectAll("button")
+					.classed("active", false);
+			
+				d3.select("#btn2013")
+					.classed("active", true);
+			
+				yScale.domain(data
+					.filter(function(d){ return d["year"] == "2013"; })
+					.sort(function(a, b){ return a["total"] - b["total"]; })
+					.map(function(d){ return d["employer_clean"]; })
+				);
+			
+				chart.selectAll(".bar")
+					.transition()
+					.duration(800)
+					.attr("y", function(d){ return yScale(d["employer_clean"]); })
+					.attr("width", function(d){if(d["year"] == "2013") { return xScale(d["total"]) } else { return 0 }; });
+					
+				svg.selectAll(".yscale")
+					.transition()
+					.duration(800)
+					.call(d3.axisLeft(yScale));
+			
+				chartLoop.selectAll(".label")
+					.attr("x", function(d){ if(d["year"] == "2013") { return xScale(d["total"]) + 3 } else { return 0 }; })
+					.attr("y", function(d){ return yScale(d["employer_clean"]) + 12; })
+					.text(function(d){ if(d["year"] == "2013") return d3.format(",")(d["total"]); })
+					.style("font-size", "9")
+					.style("font-family", "Lato")
+					.style("font-weight", 300)
+			
+			});
+		
+		
+		d3.select("#btn2014")
+			.on("click", function(e, i){
+			
+				d3.selectAll("button")
+					.classed("active", false);
+			
+				d3.select("#btn2014")
+					.classed("active", true);
+			
+				yScale.domain(data
+					.filter(function(d){ return d["year"] == "2014"; })
+					.sort(function(a, b){ return a["total"] - b["total"]; })
+					.map(function(d){ return d["employer_clean"]; })
+				);
+			
+				chart.selectAll(".bar")
+					.transition()
+					.duration(800)
+					.attr("y", function(d){ return yScale(d["employer_clean"]); })
+					.attr("width", function(d){if(d["year"] == "2014") { return xScale(d["total"]) } else { return 0 }; });
+					
+				svg.selectAll(".yscale")
+					.transition()
+					.duration(800)
+					.call(d3.axisLeft(yScale));
+			
+				chartLoop.selectAll(".label")
+					.attr("x", function(d){ if(d["year"] == "2014") { return xScale(d["total"]) + 3 } else { return 0 }; })
+					.attr("y", function(d){ return yScale(d["employer_clean"]) + 12; })
+					.text(function(d){ if(d["year"] == "2014") return d3.format(",")(d["total"]); })
+					.style("font-size", "9")
+					.style("font-family", "Lato")
+					.style("font-weight", 300)
+			
+			});
+			
+		d3.select("#btn2015")
+			.on("click", function(e, i){
+			
+				d3.selectAll("button")
+					.classed("active", false);
+			
+				d3.select("#btn2015")
+					.classed("active", true);
+			
+				yScale.domain(data
+					.filter(function(d){ return d["year"] == "2015"; })
+					.sort(function(a, b){ return a["total"] - b["total"]; })
+					.map(function(d){ return d["employer_clean"]; })
+				);
+			
+				chart.selectAll(".bar")
+					.transition()
+					.duration(800)
+					.attr("y", function(d){ return yScale(d["employer_clean"]); })
+					.attr("width", function(d){if(d["year"] == "2015") { return xScale(d["total"]) } else { return 0 }; });
+					
+				svg.selectAll(".yscale")
+					.transition()
+					.duration(800)
+					.call(d3.axisLeft(yScale));
+			
+				chartLoop.selectAll(".label")
+					.attr("x", function(d){ if(d["year"] == "2015") { return xScale(d["total"]) + 3 } else { return 0 }; })
+					.attr("y", function(d){ return yScale(d["employer_clean"]) + 12; })
+					.text(function(d){ if(d["year"] == "2015") return d3.format(",")(d["total"]); })
+					.style("font-size", "9")
+					.style("font-family", "Lato")
+					.style("font-weight", 300)
+			
+			});
+
+	
+	//axis labels chart labels	
+		svg.append("g")
+			.attr("class", "xscale")
+			.attr("transform", "translate(" + margin.left + "," + ( margin.top) + ")")
+			.call(d3.axisTop(xScale));
+	
+		
+		svg.append("g")
+			.attr("class", "yscale")
+			.attr("transform", "translate(" + margin.left + "," +  margin.top + ")")
+    		.call(d3.axisLeft(yScale));
+			
+			
+		
+		svg.append("text")
+			.attr("y", margin.top -25)
+			.attr("x", width/2 + 150)
+			.text("Workers Requested")
+			.style("font-family", "Lato")
+			.style("font-size", "10px")
+			.style("font-weight", "300");
+			
+
+		
+		svg.append("text")
+			.attr("y", height + 70)
+			.attr("x", width - 280)
+			.text("Source: Department of Labor, Office of Foreign Labor Certification, Data is FY 2010-2015, all company data includes subsidiaries.")
+			.style("font-family", "Lato")
+			.style("font-weight", "300")
+			.style("font-size", "8px");
+			
+		svg.append("text")
+			.attr("y", height + 80)
+			.attr("x", width - 280)
+			.text("*Satyam Computer Services merged with Tech Mahindra in 2013.")
+			.style("font-family", "Lato")
+			.style("font-weight", "300")
+			.style("font-size", "8px");
+			
+		
+			
+	})
+
+
+    </script>
+		
+  </body>
+</html>
