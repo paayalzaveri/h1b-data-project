@@ -61,13 +61,14 @@ header{
 
 a:link{
 	color:#868686;
-	text-decoration: underline;
+/*	text-decoration: underline;*/
 }
 a:visited{
 	color:#868686;
 }
 a:hover{
 	color:#363636;
+
 }
 
 
