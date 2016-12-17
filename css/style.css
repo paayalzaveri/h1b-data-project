@@ -60,14 +60,14 @@ header{
 }
 
 a:link{
-	color:#868686;
-/*	text-decoration: underline;*/
+	color:#363636;
+	text-decoration: underline;
 }
 a:visited{
-	color:#868686;
+	color:#363636;
 }
 a:hover{
-	color:#363636;
+	color:#868686;
 
 }
 
@@ -98,10 +98,7 @@ a:hover{
 	font-weight: 600;
 }
 
-.color-sm{
-	color:#5185d9;
 
-}
 
 .source{
 	margin-top:0;
